@@ -1,0 +1,9 @@
+site_name: Meu Site MkDocs
+site_url: https://usuario.github.io/
+
+nav:
+  - Home: index.md
+  - Sobre: sobre.md
+
+theme:
+  name: material
