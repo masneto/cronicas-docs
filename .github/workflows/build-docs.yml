@@ -26,6 +26,7 @@ jobs:
         with:
           name: pr-${{ github.event.pull_request.number }}
           path: ./site
+          retention-days: 1
 
       - name: Trigger deploy in other repo
         run: |
