@@ -1,3 +1,3 @@
-# Bem-vindo ao meu site MkDocs Cronicas do Nada Ver
+# Bem-vindo ao Cronicas do Nada Ver
 
 Este é o conteúdo da página inicial.
