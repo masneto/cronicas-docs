@@ -10,6 +10,7 @@ permissions:
 
 jobs:
   build:
+    name: Build Docs Preview
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
