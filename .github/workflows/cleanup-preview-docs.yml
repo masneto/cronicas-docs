@@ -1,0 +1,17 @@
+name: Cleanup Preview on PR Close
+
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  cleanup-preview:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger cleanup in preview repo
+        run: |
+          curl -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer ${{ secrets.PAT_GITHUB_TOKEN }}" \
+            https://api.github.com/repos/masneto/cronicas-dispatch/dispatches \
+            -d '{"event_type":"pr-preview-cleanup","client_payload":{"artifact_repo":"${{ github.repository }}","pr_number":${{ github.event.pull_request.number }}}}'

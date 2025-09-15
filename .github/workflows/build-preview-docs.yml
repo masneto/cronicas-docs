@@ -1,4 +1,4 @@
-name: Build Docs (PR)
+name: Build Docs Preview
 
 on:
   pull_request:
@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   build:
-    name: Build Docs Preview
+    name: Build Docs and Preview
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
