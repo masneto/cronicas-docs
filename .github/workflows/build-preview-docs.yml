@@ -11,6 +11,7 @@ permissions:
 jobs:
   build:
     name: Build Docs and Preview
+    if: github.event.pull_request.base.ref == 'main'
     runs-on: ubuntu-latest
     steps:
       # Checkout the repository to access the source code
