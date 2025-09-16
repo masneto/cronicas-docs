@@ -8,6 +8,9 @@ jobs:
   cleanup-preview:
     runs-on: ubuntu-latest
     steps:
+      # Send a repository_dispatch event to the preview repo (cronicas-dispatch)
+      # This triggers the cleanup workflow there, which removes the preview
+      # folder and updates the index.html accordingly.
       - name: Trigger cleanup in preview repo
         run: |
           curl -X POST \
