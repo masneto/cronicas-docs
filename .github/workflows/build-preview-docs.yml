@@ -39,11 +39,11 @@ jobs:
       # Trigger deploy workflow in external repository to publish the preview
       - name: Trigger deploy in other repo
         run: |
-          curl -X POST \
-            -H "Accept: application/vnd.github+json" \
-            -H "Authorization: Bearer ${{ secrets.PAT_GITHUB_TOKEN }}" \
-            https://api.github.com/repos/masneto/cronicas-dispatch/dispatches \
-            -d '{"event_type":"pr-preview","client_payload":{"pr_number": '${{ github.event.pull_request.number }}', "artifact_repo": "${{ github.repository }}", "artifact_run_id": "${{ github.run_id }}"}}'
+          # curl -X POST \
+          #   -H "Accept: application/vnd.github+json" \
+          #   -H "Authorization: Bearer ${{ secrets.PAT_GITHUB_TOKEN }}" \
+          #   https://api.github.com/repos/masneto/cronicas-dispatch/dispatches \
+          #   -d '{"event_type":"pr-preview","client_payload":{"pr_number": '${{ github.event.pull_request.number }}', "artifact_repo": "${{ github.repository }}", "artifact_run_id": "${{ github.run_id }}"}}'
 
           curl -X POST \
             -H "Accept: application/vnd.github+json" \
