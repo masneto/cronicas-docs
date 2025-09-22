@@ -3,6 +3,7 @@ name: Build Docs Preview
 on:
   pull_request:
     types: [opened, reopened, synchronize]
+    branches: [main]
 
 permissions:
   contents: read
@@ -13,15 +14,21 @@ jobs:
     name: Build Docs and Preview
     runs-on: ubuntu-latest
     steps:
+      # Checkout the repository to access the source code
       - uses: actions/checkout@v4
 
+      # Setup Python environment for MkDocs
       - uses: actions/setup-python@v6
         with:
           python-version: "3.11"
 
+      # Install MkDocs and Material theme for documentation generation
       - run: pip install mkdocs mkdocs-material
+
+      # Build the documentation site into the ./site directory
       - run: mkdocs build --clean
 
+      # Upload the generated site as an artifact, scoped to this PR
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
@@ -29,6 +36,7 @@ jobs:
           path: ./site
           retention-days: 1
 
+      # Trigger deploy workflow in external repository to publish the preview
       - name: Trigger deploy in other repo
         run: |
           curl -X POST \
