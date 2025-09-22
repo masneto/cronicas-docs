@@ -16,33 +16,42 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
+
     steps:
+      # Checkout repository source code
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      # Setup Python environment
       - name: Setup Python
         uses: actions/setup-python@v6
         with:
           python-version: "3.11"
 
+      # Install MkDocs and theme dependencies
       - name: Install dependencies
         run: pip install mkdocs mkdocs-material
 
+      # Build static documentation site
       - name: Build documentation
         run: mkdocs build --clean
 
+      # Upload the built site as an artifact for Pages
       - name: Upload github-pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./site
 
+      # Configure GitHub Pages settings
       - name: Configure Pages
         uses: actions/configure-pages@v5
 
+      # Deploy artifact to GitHub Pages
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
 
+      # Show the deployed URL in the logs
       - name: Show deployed URL
         run: |
           echo "Page URL: ${{ steps.deployment.outputs.page_url }}"
